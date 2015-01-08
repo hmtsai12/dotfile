@@ -9,3 +9,7 @@ smb.conf:samba config file
 
 tftpd-hpa: tftp server config
 	/etc/default
+
+dhcpd.conf: dhcp config file
+	/etc/dhcp
+	/etc/default/isc-dhcp-server is set to use eth interface
