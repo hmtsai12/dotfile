@@ -145,6 +145,9 @@ let Tlist_Sort_Type = "name"
 "highlight
 map <f8> :set hls!<bar>set hls?<CR>
 
+"BufExplorer
+map <f6> :BufExplorer<CR>
+
 "win manager
 nmap wm :WMToggle<CR>
 
