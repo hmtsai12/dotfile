@@ -151,7 +151,7 @@ nmap wm :WMToggle<CR>
 nmap :F :FirstExplorerWindow<CR>
 nmap :B :BottomExplorerWindow<CR>
 
-let g:winManagerWindowLayout = "FileExplorer,BufExplorer|TagList"
+"let g:winManagerWindowLayout = "FileExplorer,BufExplorer"
 let g:winManagerWidth = 30
 let g:defaultExplorer = 0
 
@@ -168,14 +168,6 @@ endif
 set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
 nmap <C-n> :cnext<CR>
 nmap <C-p> :cprev<CR>
-nmap <F6>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <F6>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <F6>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <F6>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <F6>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <F6>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <F6>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <F6>d :cs find d <C-R>=expand("<cword>")<CR><CR> 
 
 " sesionopt and viminfo
 nmap save :call SaveProject()<CR>
@@ -188,7 +180,7 @@ set sessionoptions+=sesdir
 
 function! SaveProject()
 WMClose
-"NERDTreeClose 
+NERDTreeClose 
 if(bufexists("__Tag_List__")!=0)
 TlistClose
 endif
@@ -228,7 +220,6 @@ if(argc()==0)
 call LoadProject()
 endif
 endfunction
-
 
 function! WipeProject()
 if(delete(s:curProjectSession)==0)
