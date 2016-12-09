@@ -171,7 +171,13 @@ endif
 set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
 nmap <C-n> :cnext<CR>
 nmap <C-p> :cprev<CR>
-
+" Color
+"colorscheme kolor 
+"colorscheme greens
+highlight Comment term=bold cterm=NONE ctermfg=Green ctermbg=NONE gui=NONE guifg=Green guibg=NONE
+highlight Directory term=bold cterm=NONE ctermfg=cyan ctermbg=NONE gui=NONE guifg=cyan guibg=NONE
+" Explore
+nmap :E :Explore<CR>
 " sesionopt and viminfo
 nmap save :call SaveProject()<CR>
 nmap wipe :call WipeProject()<CR>
@@ -180,10 +186,6 @@ nmap wipe :call WipeProject()<CR>
 set sessionoptions-=curdir
 set sessionoptions+=sesdir
 "set sessionoptions-=blank
-"colorscheme kolor 
-"colorscheme greens
-highlight Comment term=bold cterm=NONE ctermfg=Green ctermbg=NONE gui=NONE guifg=Green guibg=NONE
-highlight Directory term=bold cterm=NONE ctermfg=cyan ctermbg=NONE gui=NONE guifg=cyan guibg=NONE
 function! SaveProject()
 WMClose
 NERDTreeClose 
