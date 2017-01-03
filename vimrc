@@ -171,6 +171,39 @@ endif
 set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
 nmap <C-n> :cnext<CR>
 nmap <C-p> :cprev<CR>
+" refresh cscope tags
+function UpdateCtags()
+	let curdir=getcwd()
+	while !filereadable("./tags")
+		cd ..
+		if getcwd() == "/"
+			break
+		endif
+	endwhile
+	if filewritable("./tags")
+		:!ctags -R
+	endif
+	execute ":cd " . curdir
+endfunction
+
+function UpdateCStags()
+	let curdir=getcwd()
+	while !filereadable("./cscope.out")
+		cd ..
+		if getcwd() == "/"
+			break
+		endif
+	endwhile
+	if filewritable("./cscope.out")
+		:!cscope -Rbq
+		execute ":cscope kill 0"
+		execute ":cscope add cscope.out"
+	endif
+	execute ":cd " . curdir
+endfunction
+nmap <F3> :call UpdateCtags()<CR>
+nmap <F4> :call UpdateCStags()<CR>
+
 " Color
 "colorscheme kolor 
 "colorscheme greens
