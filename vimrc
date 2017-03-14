@@ -23,8 +23,9 @@ Plugin 'The-NERD-tree'
 "Plugin 'L9'
 "Plugin 'FuzzyFinder'
 Plugin 'cscope_macros.vim'
-Plugin 'SrcExpl' "preview code
+"Plugin 'SrcExpl' "preview code
 Plugin 'winmanager'
+"Plugin 'tabbar'
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'MarcWeber/vim-addon-mw-utils'
 "Bundle 'tomtom/tlib_vim'
@@ -131,46 +132,62 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 "preview code function
-map <f7> :SrcExplToggle<CR>
+"map <f7> :SrcExplToggle<CR>
 
 "Tlist
 map <f9> :TlistToggle<CR>
 let Tlist_Use_Right_Window = 1
-"let Tlist_Show_One_File = 1
+let Tlist_Show_One_File = 1
 "let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Sort_Type = "name"
+let Tlist_Show_Menu = 1
 
 "highlight
 map <f8> :set hls!<bar>set hls?<CR>
 
 "BufExplorer
-map <f6> :BufExplorer<CR>
+"map <f6> :BufExplorer<CR>
 
 "win manager
 nmap wm :WMToggle<CR>
-
 nmap :F :FirstExplorerWindow<CR>
 nmap :B :BottomExplorerWindow<CR>
-
+"let g:NERDTree_title='NERD Tree'
+"let g:winManagerWindowLayout = 'NERDTree|TagList,Tarbar'
+"let g:winManagerWindowLayout = 'NERDTree|BufExplorer'
+"function! NERDTree_Start()
+"	exec 'NERDTree'
+"endfunction
+"function! NERDTree_IsValid()
+"	return 1
+"endfunction
 "let g:winManagerWindowLayout = "FileExplorer,BufExplorer"
+"let g:winManagerWindowLayout = "TagList|FileExplorer,BufExplorer" 
 let g:winManagerWidth = 30
 let g:defaultExplorer = 0
+"nmap <silent> mt :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<cR>:q<CR> endif <CR>
 
+"tabbar
+"let g:Tb_MaxSize=3
+"let g:Tb_TabWrap=1
+
+"NERDTree
+nnoremap <silent> <F5> :NERDTree<CR>
 "save file
 map <f1> :w<cr>
 
-:set ai
-:map td :tabnew. <cr>
-:noremap ts td
+"read project path, use gettrack.sh 
 if filereadable("workspace.vim")
 	source workspace.vim
 endif
+
 "quick fix 
 set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
 nmap <C-n> :cnext<CR>
 nmap <C-p> :cprev<CR>
+
 " refresh cscope tags
 function UpdateCtags()
 	let curdir=getcwd()
@@ -209,8 +226,10 @@ nmap <F4> :call UpdateCStags()<CR>
 "colorscheme greens
 highlight Comment term=bold cterm=NONE ctermfg=Green ctermbg=NONE gui=NONE guifg=Green guibg=NONE
 highlight Directory term=bold cterm=NONE ctermfg=cyan ctermbg=NONE gui=NONE guifg=cyan guibg=NONE
+
 " Explore
 nmap :E :Explore<CR>
+
 " sesionopt and viminfo
 nmap save :call SaveProject()<CR>
 nmap wipe :call WipeProject()<CR>
@@ -219,6 +238,7 @@ nmap wipe :call WipeProject()<CR>
 set sessionoptions-=curdir
 set sessionoptions+=sesdir
 "set sessionoptions-=blank
+
 function! SaveProject()
 WMClose
 NERDTreeClose 
