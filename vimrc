@@ -165,7 +165,7 @@ nmap :B :BottomExplorerWindow<CR>
 "endfunction
 "let g:winManagerWindowLayout = "FileExplorer,BufExplorer"
 "let g:winManagerWindowLayout = "TagList|FileExplorer,BufExplorer" 
-let g:winManagerWidth = 30
+let g:winManagerWidth = 35 
 let g:defaultExplorer = 0
 "nmap <silent> mt :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<cR>:q<CR> endif <CR>
 
@@ -212,7 +212,7 @@ function UpdateCStags()
 		endif
 	endwhile
 	if filewritable("./cscope.out")
-		:!cscope -Rbq
+		:!cscope -Rbqk
 		execute ":cscope kill 0"
 		execute ":cscope add cscope.out"
 	endif
