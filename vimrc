@@ -67,6 +67,8 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+"set softtabstop=4       " set soft tab 4 character
+"set shiftwidth=4
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -134,6 +136,10 @@ endif
 "preview code function
 "map <f7> :SrcExplToggle<CR>
 
+"key Mapping"
+inoremap ( ()<Esc>i
+inoremap {<CR> {<CR>}<Esc>ko
+inoremap {{ {}<Esc>i
 "Tlist
 map <f9> :TlistToggle<CR>
 let Tlist_Use_Right_Window = 1
