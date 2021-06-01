@@ -3,3 +3,4 @@ merge branch
 a
 b
 c
+d
